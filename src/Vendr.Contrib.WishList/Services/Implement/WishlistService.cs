@@ -18,6 +18,16 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             _repositoryFactory = repositoryFactory;
         }
 
+        public void AddProduct(string productReference, decimal qty)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProduct(string productReference, decimal qty, IDictionary<string, string> properties)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteWishlist(Guid id)
         {
             throw new NotImplementedException();

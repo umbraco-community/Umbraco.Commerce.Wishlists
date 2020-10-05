@@ -32,6 +32,16 @@ namespace Vendr.Contrib.Wishlists.Services
         IEnumerable<Wishlist> SearchWishlists(Guid storeId, long currentPage, long itemsPerPage, out long totalRecords, string searchTerm = "", DateTime? startDate = null, DateTime? endDate = null);
 
         /// <summary>
+        /// Add product to wishlist.
+        /// </summary>
+        void AddProduct(string productReference, decimal qty);
+
+        /// <summary>
+        /// Add product to wishlist.
+        /// </summary>
+        void AddProduct(string productReference, decimal qty, IDictionary<string, string> properties);
+
+        /// <summary>
         /// Save wishlist.
         /// </summary>
         Wishlist SaveWishlist(Wishlist review);
