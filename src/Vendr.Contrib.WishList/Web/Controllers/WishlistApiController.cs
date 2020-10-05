@@ -9,11 +9,11 @@ using Vendr.Contrib.Wishlists.Services;
 namespace Vendr.Contrib.Wishlists.Web.Controllers
 {
     [PluginController("VendrWishlists")]
-    public class ProductReviewApiController : UmbracoAuthorizedApiController
+    public class WishlistwApiController : UmbracoAuthorizedApiController
     {
         private readonly IWishlistService _wishlistService;
 
-        public ProductReviewApiController(IWishlistService wishlistService)
+        public WishlistwApiController(IWishlistService wishlistService)
         {
             _wishlistService = wishlistService;
         }

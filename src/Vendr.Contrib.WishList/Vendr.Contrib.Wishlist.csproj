@@ -293,7 +293,7 @@
     <Compile Include="Services\Implement\WishlistService.cs" />
     <Compile Include="Services\IWishlistService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\Controllers\ProductReviewApiController.cs" />
+    <Compile Include="Web\Controllers\WishlistApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

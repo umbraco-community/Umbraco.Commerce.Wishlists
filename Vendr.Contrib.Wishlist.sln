@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vendr.Contrib.Wishlist", "src\Vendr.Contrib.ProductReviews\Vendr.Contrib.Wishlist.csproj", "{41CB18E9-1791-4F4C-A3E7-EF32CF69766E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{28F0AFA0-A189-4C25-8F10-D827C54A3DE1}"
 	ProjectSection(SolutionItems) = preProject
 		build\Build.Compile.targets = build\Build.Compile.targets
@@ -23,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuSpecs", "NuSpecs", "{57D0
 	ProjectSection(SolutionItems) = preProject
 		build\NuSpecs\Vendr.Contrib.Wishlist.nuspec = build\NuSpecs\Vendr.Contrib.Wishlist.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vendr.Contrib.Wishlist", "src\Vendr.Contrib.WishList\Vendr.Contrib.Wishlist.csproj", "{41CB18E9-1791-4F4C-A3E7-EF32CF69766E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
