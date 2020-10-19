@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata minClientVersion="4.1.0">
-        <id>Vendr.Contrib.Wishlist</id>
+        <id>Vendr.Contrib.Wishlists</id>
         <version>0.0.0</version>
-        <title>Vendr.Contrib.Wishlist</title>
+        <title>Vendr.Contrib.Wishlists</title>
         <authors>Vendr Contrib</authors>
         <owners>Vendr Contrib</owners>
         <copyright>Vendr Contrib</copyright>
         <icon>images\icon.png</icon>
         <license type="expression">MIT</license>
         <projectUrl>https://getvendr.net/</projectUrl>
-        <description>Wish List for Vendr, the eCommerce package for Umbrao v8+</description>
-        <summary>Wish List for Vendr, the eCommerce package for Umbrao v8+</summary>
+        <description>Wishlists for Vendr, the eCommerce package for Umbrao v8+</description>
+        <summary>Wishlists for Vendr, the eCommerce package for Umbrao v8+</summary>
         <language>en-US</language>
         <tags>umbraco ecommerce vendr</tags>
         <dependencies>
@@ -26,9 +26,9 @@
         <file src="$SrcDir$\assets\logo-128.png" target="images\icon.png" />
         
         <!-- libs -->
-        <file src="$SrcDir$\bin\Vendr.Contrib.Wishlist.dll" target="lib\net472\Vendr.Contrib.Wishlist.dll" />
+        <file src="$SrcDir$\bin\Vendr.Contrib.Wishlists.dll" target="lib\net472\Vendr.Contrib.Wishlists.dll" />
 
         <!-- symbols -->
-        <file src="$SrcDir$\bin\Vendr.Contrib.Wishlist.pdb" target="lib\net472\Vendr.Contrib.Wishlist.pdb" />
+        <file src="$SrcDir$\bin\Vendr.Contrib.Wishlists.pdb" target="lib\net472\Vendr.Contrib.Wishlists.pdb" />
     </files>
 </package>

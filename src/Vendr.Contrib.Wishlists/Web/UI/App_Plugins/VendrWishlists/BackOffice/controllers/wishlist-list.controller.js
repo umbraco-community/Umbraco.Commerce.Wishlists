@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function vendrWishlistListController($scope, $routeParams, $location, $q, appState, vendrWishListResource, navigationService, vendrUtils, vendrRouteCache, vendrLocalStorage) {
+    function vendrWishlistListController($scope, $routeParams, $location, $q, appState, vendrWishlistsResource, navigationService, vendrUtils, vendrRouteCache, vendrLocalStorage) {
 
         var compositeId = vendrUtils.parseCompositeId($routeParams.id);
         var storeId = compositeId[0];
@@ -30,7 +30,7 @@
                     name: 'Delete',
                     icon: 'icon-trash',
                     doAction: function (bulkItem) {
-                        return vendrWishListResource.deleteWishlist(bulkItem.id);
+                        return vendrWishlistsResource.deleteWishlist(bulkItem.id);
                     },
                     getConfirmMessage: function (total) {
                         return $q.resolve("Are you sure you want to delete " + total + " " + (total > 1 ? "items" : "item") + "?");
@@ -103,9 +103,9 @@
             });
 
             // Perform search
-            vendrWishListResource.searchWishLists(storeId, opts).then(function (entities) {
+            vendrWishlistsResource.searchWishlists(storeId, opts).then(function (entities) {
                 entities.items.forEach(function (itm) {
-                    itm.routePath = '/commerce/vendrwishlist/wishlist-edit/' + vendrUtils.createCompositeId([storeId, itm.id]);
+                    itm.routePath = '/commerce/vendrwishlists/wishlist-edit/' + vendrUtils.createCompositeId([storeId, itm.id]);
                 });
                 vm.options.items = entities;
                 if (callback) {
@@ -141,9 +141,9 @@
             }
         };
 
-        $scope.$on("vendrWishListDeleted", onVendrWishListEvent);
+        $scope.$on("vendrWishlistDeleted", onVendrWishlistEvent);
     }
 
-    angular.module('vendr').controller('Vendr.Wishlist.Controllers.WishListController', vendrWishlistListController);
+    angular.module('vendr').controller('Vendr.Wishlist.Controllers.WishlistController', vendrWishlistListController);
 
 }());

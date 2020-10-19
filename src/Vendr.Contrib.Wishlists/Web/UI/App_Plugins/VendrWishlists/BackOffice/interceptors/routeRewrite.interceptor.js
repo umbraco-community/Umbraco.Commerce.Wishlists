@@ -4,15 +4,15 @@
     var routeMap = [
         {
             pattern: /^views\/vendrwishlist\/(.*)-(.*).html(.*)$/gi,
-            map: '/app_plugins/vendrwishlist/backoffice/views/$1/$2.html$3'
+            map: '/app_plugins/vendrwishlists/backoffice/views/$1/$2.html$3'
         },
         {
             pattern: /^views\/vendrwishlist\/(.*).html(.*)$/gi,
-            map: '/app_plugins/vendrwishlist/backoffice/views/$1/edit.html$3'
+            map: '/app_plugins/vendrwishlists/backoffice/views/$1/edit.html$3'
         }
     ];
 
-    function vendrWishListRouteRewritesInterceptor($q) {
+    function vendrWishlistsRouteRewritesInterceptor($q) {
 
         return {
             'request': function (config) {
@@ -26,6 +26,6 @@
         };
     }
 
-    angular.module('umbraco.interceptors').factory('vendrWishListRouteRewritesInterceptor', vendrWishListRouteRewritesInterceptor);
+    angular.module('umbraco.interceptors').factory('vendrWishlistsRouteRewritesInterceptor', vendrWishlistsRouteRewritesInterceptor);
 
 }());

@@ -13,7 +13,7 @@
 
             public static class Tables
             {
-                public const string Wishlist = TableNamePrefix + "WishList";
+                public const string Wishlist = TableNamePrefix + "Wishlist";
             }
         }
 

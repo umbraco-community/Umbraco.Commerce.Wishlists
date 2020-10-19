@@ -1,0 +1,11 @@
+﻿{
+  "javascript": [
+    "~/App_Plugins/VendrWishlists/backoffice/resources/vendrwishlists.resource.js",
+    "~/App_Plugins/VendrWishlists/backoffice/interceptors/routeRewrite.interceptor.js",
+    "~/App_Plugins/VendrWishlists/backoffice/interceptors/config.interceptors.js",
+    "~/App_Plugins/VendrWishlists/backoffice/controllers/wishlist-list.controller.js"
+  ],
+  "css": [
+    "~/App_Plugins/VendrWishlists/backoffice/css/vendrwishlists.css"
+  ]
+}

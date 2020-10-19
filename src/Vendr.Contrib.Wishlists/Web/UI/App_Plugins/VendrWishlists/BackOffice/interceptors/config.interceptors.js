@@ -3,6 +3,6 @@
 
     angular.module('vendr.interceptors')
         .config(function ($httpProvider) {
-            $httpProvider.interceptors.push('vendrvendrWishListRouteRewritesInterceptor');
+            $httpProvider.interceptors.push('vendrvendrWishlistsRouteRewritesInterceptor');
         });
 })();

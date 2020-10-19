@@ -14,15 +14,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{28F0AFA0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Umbraco", "Umbraco", "{13726C8F-6AEA-43A3-8F8A-AF7AFFEFC057}"
 	ProjectSection(SolutionItems) = preProject
-		build\Umbraco\Wishlist.package.xml = build\Umbraco\Wishlist.package.xml
+		build\Umbraco\Wishlists.package.xml = build\Umbraco\Wishlists.package.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuSpecs", "NuSpecs", "{57D08155-4F59-4C25-925E-88514D95C217}"
 	ProjectSection(SolutionItems) = preProject
-		build\NuSpecs\Vendr.Contrib.Wishlist.nuspec = build\NuSpecs\Vendr.Contrib.Wishlist.nuspec
+		build\NuSpecs\Vendr.Contrib.Wishlists.nuspec = build\NuSpecs\Vendr.Contrib.Wishlists.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vendr.Contrib.Wishlist", "src\Vendr.Contrib.WishList\Vendr.Contrib.Wishlist.csproj", "{41CB18E9-1791-4F4C-A3E7-EF32CF69766E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vendr.Contrib.Wishlists", "src\Vendr.Contrib.Wishlists\Vendr.Contrib.Wishlists.csproj", "{41CB18E9-1791-4F4C-A3E7-EF32CF69766E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function vendrWishListResource($http, umbRequestHelper) {
+    function vendrWishlistsResource($http, umbRequestHelper) {
 
         return {
 
@@ -16,6 +16,6 @@
 
     }
 
-    angular.module('vendr.resources').factory('vendrWishListResource', vendrWishListResource);
+    angular.module('vendr.resources').factory('vendrWishlistsResource', vendrWishlistsResource);
 
 }());

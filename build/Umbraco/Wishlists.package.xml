@@ -3,7 +3,7 @@
     
     <info>
         <package>
-            <name>Vendr.Contrib.Wishlist</name>
+            <name>Vendr.Contrib.Wishlists</name>
             <version>0.0.0</version>
             <license url="https://opensource.org/licenses/MIT">MIT</license>
             <url></url>
@@ -21,7 +21,7 @@
           <contributor>Bjarne Fyrstenborg</contributor>
           <contributor>Matt Brailsford</contributor>
         </contributors>
-        <readme>Wish List for Vendr, the eCommerce package for Umbrao v8+</readme>
+        <readme>Wishlists for Vendr, the eCommerce package for Umbrao v8+</readme>
     </info>
     
     <DocumentTypes></DocumentTypes>
