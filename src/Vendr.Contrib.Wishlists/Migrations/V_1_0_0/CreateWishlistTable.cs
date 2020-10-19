@@ -27,7 +27,7 @@ namespace Vendr.Contrib.Wishlists.Migrations.V_1_0_0
                     .WithColumn("storeId").AsGuid().NotNullable()
                     .WithColumn("orderId").AsGuid().NotNullable()
                     //.WithColumn("customerReference").AsString(255).Nullable()
-                    .WithColumn("name").AsString(255).NotNullable()
+                    .WithColumn("name").AsString(255).Nullable()
                     .WithColumn("createDate").AsDateTime().NotNullable()
                     .WithColumn("updateDate").AsDateTime().NotNullable()
                     .Do();
