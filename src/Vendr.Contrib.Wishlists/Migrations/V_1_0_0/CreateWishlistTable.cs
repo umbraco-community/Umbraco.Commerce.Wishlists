@@ -25,7 +25,7 @@ namespace Vendr.Contrib.Wishlists.Migrations.V_1_0_0
                 Create.Table(wishlistTableName)
                     .WithColumn("id").AsGuid().NotNullable().WithDefault(SystemMethods.NewGuid).PrimaryKey($"PK_{wishlistTableName}")
                     .WithColumn("storeId").AsGuid().NotNullable()
-                    .WithColumn("orderGuid").AsGuid().NotNullable()
+                    .WithColumn("orderId").AsGuid().NotNullable()
                     //.WithColumn("customerReference").AsString(255).Nullable()
                     .WithColumn("name").AsString(255).NotNullable()
                     .WithColumn("createDate").AsDateTime().NotNullable()
