@@ -30,16 +30,16 @@ namespace Vendr.Contrib.Wishlists.Composing
                 var storeId = e.QueryStrings["id"];
                 var id = Constants.Trees.Wishlist.Id;
 
-                var reviewsNode = sender.CreateTreeNode(id, storeId, e.QueryStrings, "Wishlists", Constants.Trees.Wishlist.Icon, false, $"{mainRoute}/wishlist-list/{storeId}");
+                var node = sender.CreateTreeNode(id, storeId, e.QueryStrings, "Wishlists", Constants.Trees.Wishlist.Icon, false, $"{mainRoute}/wishlist-list/{storeId}");
 
-                reviewsNode.Path = $"-1,{storeId},{id}";
-                reviewsNode.NodeType = Constants.Trees.Wishlist.NodeType;
+                node.Path = $"-1,{storeId},{id}";
+                node.NodeType = Constants.Trees.Wishlist.NodeType;
 
-                reviewsNode.AdditionalData.Add("storeId", storeId);
-                reviewsNode.AdditionalData.Add("tree", Vendr.Web.Constants.Trees.Stores.Alias);
-                reviewsNode.AdditionalData.Add("application", Vendr.Web.Constants.Sections.Commerce);
+                node.AdditionalData.Add("storeId", storeId);
+                node.AdditionalData.Add("tree", Vendr.Web.Constants.Trees.Stores.Alias);
+                node.AdditionalData.Add("application", Vendr.Web.Constants.Sections.Commerce);
 
-                e.Nodes.Insert(index, reviewsNode);
+                e.Nodes.Insert(index, node);
             }
         }
     }
