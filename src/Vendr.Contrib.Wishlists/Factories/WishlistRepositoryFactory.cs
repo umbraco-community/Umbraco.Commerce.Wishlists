@@ -15,7 +15,7 @@ namespace Vendr.Contrib.Wishlists.Factories
             _scopeAccessor = scopeAccessor;
         }
 
-        public IWishlistRepository CreateProductReviewRepository(IUnitOfWork uow)
+        public IWishlistRepository CreateWishlistRepository(IUnitOfWork uow)
         {
             return new WishlistRepository((IDatabaseUnitOfWork)uow, _scopeAccessor.AmbientScope.SqlContext);
         }

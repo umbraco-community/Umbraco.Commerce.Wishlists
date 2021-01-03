@@ -9,6 +9,7 @@ using Vendr.Contrib.Wishlists.Factories;
 using Vendr.Contrib.Wishlists.Models;
 using Vendr.Contrib.Wishlists.Persistence.Dtos;
 using Vendr.Core;
+using Vendr.Core.Models;
 
 namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
 {
@@ -26,20 +27,10 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
         protected Sql<ISqlContext> Sql() => _sqlSyntax.Sql();
         protected ISqlSyntaxProvider SqlSyntax => _sqlSyntax.SqlSyntax;
 
-        public Wishlist Get(Guid id)
-        {
-            var sql = Sql()
-                .Select("*")
-                .From<WishlistDto>()
-                .Where<WishlistDto>(x => x.Id == id);
+        public Wishlist GetWishlist(Guid id)
+            => GetWishlists(new[] { id }).FirstOrDefault();
 
-            var data = _uow.Database.Fetch<WishlistDto>(sql);
-            var result = data.Select(WishlistFactory.BuildWishlist).SingleOrDefault();
-
-            return result;
-        }
-
-        public IEnumerable<Wishlist> Get(Guid[] ids)
+        public IEnumerable<Wishlist> GetWishlists(Guid[] ids)
         {
             var sql = Sql()
                 .Select("*")
@@ -47,10 +38,9 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
                 .WhereIn<WishlistDto>(x => x.Id, ids);
 
             var data = _uow.Database.Fetch<WishlistDto>(sql);
-            var results = data.Select(WishlistFactory.BuildWishlist).ToList();
+            var results = data.Select(EntityFactory.BuildEntity).ToList();
 
             return results;
-            //return DoFetchInternal(_uow, "WHERE id IN(@0)", ids);
         }
 
         public IEnumerable<Wishlist> GetMany(Guid storeId, string productReference, long pageIndex, long pageSize, out long totalRecords)
@@ -58,7 +48,7 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Wishlist> GetForCustomer(Guid storeId, string customerReference, long pageIndex, long pageSize, out long totalRecords, string productReference = null)
+        public IEnumerable<Wishlist> GetForCustomer(Guid storeId, string customerReference, long pageIndex, long pageSize, out long totalRecords)
         {
             throw new NotImplementedException();
         }
@@ -68,9 +58,45 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Wishlist> SearchWishlists(Guid storeId, long pageIndex, long pageSize, out long totalRecords, string[] statuses, decimal[] ratings, string searchTerm = "", DateTime? startDate = null, DateTime? endDate = null)
+        public PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, string[] customerReferences = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50)
         {
-            throw new NotImplementedException();
+            customerReferences = customerReferences ?? new string[0];
+
+            var sql = Sql()
+                .Select("*")
+                .From<WishlistDto>()
+                .Where<WishlistDto>(x => x.StoreId == storeId);
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                sql.Where<WishlistDto>(x =>
+                    x.Name.Contains(searchTerm)
+                );
+            }
+
+            if (customerReferences.Length > 0)
+            {
+                sql.WhereIn<WishlistDto>(x => x.CustomerReference, customerReferences);
+            }
+
+            if (startDate != null && startDate >= DateTime.MinValue)
+            {
+                sql.Where<WishlistDto>(x => x.CreateDate >= startDate.Value);
+            }
+
+            if (endDate != null && endDate <= DateTime.MaxValue)
+            {
+                sql.Where<WishlistDto>(x => x.CreateDate <= endDate.Value);
+            }
+
+            sql.OrderByDescending<WishlistDto>(x => x.CreateDate);
+
+            var page = _uow.Database.Page<WishlistDto>(pageNumber, pageSize, sql);
+
+            return new PagedResult<Wishlist>(page.TotalItems, page.CurrentPage, page.ItemsPerPage)
+            {
+                Items = page.Items.Select(EntityFactory.BuildEntity).ToList()
+            };
         }
 
         public Wishlist Save(Wishlist wishlist)

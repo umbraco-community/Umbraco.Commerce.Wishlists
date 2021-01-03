@@ -285,7 +285,7 @@
     <Compile Include="Migrations\V_1_0_0\CreateWishlistTable.cs" />
     <Compile Include="Persistence\Dtos\WishlistDto.cs" />
     <Compile Include="Factories\IWishlistRepositoryFactory.cs" />
-    <Compile Include="Factories\WishlistFactory.cs" />
+    <Compile Include="Factories\EntityFactory.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Persistence\Repositories\IWishlistRepository.cs" />
     <Compile Include="Persistence\Repositories\Implement\WishlistRepository.cs" />

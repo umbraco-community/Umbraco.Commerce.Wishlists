@@ -38,28 +38,28 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             throw new NotImplementedException();
         }
 
-        public Wishlist GetProductReview(Guid id)
+        public Wishlist GetWishlist(Guid id)
         {
-            Wishlist productReview;
+            Wishlist wishlist;
 
             using (var uow = _uowProvider.Create())
-            using (var repo = _repositoryFactory.CreateProductReviewRepository(uow))
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
             {
-                productReview = repo.Get(id);
+                wishlist = repo.GetWishlist(id);
                 uow.Complete();
             }
 
-            return productReview;
+            return wishlist;
         }
 
-        public IEnumerable<Wishlist> GetProductReviews(Guid[] ids)
+        public IEnumerable<Wishlist> GetWishlists(Guid[] ids)
         {
             List<Wishlist> wishlists = new List<Wishlist>();
 
             using (var uow = _uowProvider.Create())
-            using (var repo = _repositoryFactory.CreateProductReviewRepository(uow))
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
             {
-                var lists = repo.Get(ids);
+                var lists = repo.GetWishlists(ids);
                 wishlists.AddRange(lists);
                 uow.Complete();
             }
@@ -67,22 +67,12 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             return wishlists;
         }
 
-        public Wishlist GetWishlist(Guid id)
+        public IEnumerable<Wishlist> GetWishlistsForCustomer(Guid storeId, string customerReference, long currentPage, long itemsPerPage, out long totalRecords)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Wishlist> GetWishlists(Guid[] ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Wishlist> GetWishlistsForCustomer(Guid storeId, string customerReference, long currentPage, long itemsPerPage, out long totalRecords, string productReference = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Wishlist SaveWishlist(Wishlist review)
+        public Wishlist SaveWishlist(Wishlist wishlist)
         {
             throw new NotImplementedException();
         }

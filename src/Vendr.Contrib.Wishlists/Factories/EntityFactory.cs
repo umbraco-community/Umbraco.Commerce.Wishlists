@@ -5,9 +5,9 @@ using Vendr.Core;
 
 namespace Vendr.Contrib.Wishlists.Factories
 {
-    internal static class WishlistFactory
+    internal static class EntityFactory
     {
-        public static Wishlist BuildWishlist(WishlistDto dto)
+        public static Wishlist BuildEntity(WishlistDto dto)
         {
             dto.MustNotBeNull(nameof(dto));
 
@@ -23,7 +23,7 @@ namespace Vendr.Contrib.Wishlists.Factories
             return wishlist;
         }
 
-        public static WishlistDto BuildWishlist(Wishlist wishlist)
+        public static WishlistDto BuildDto(Wishlist wishlist)
         {
             wishlist.MustNotBeNull(nameof(wishlist));
 

@@ -5,6 +5,6 @@ namespace Vendr.Contrib.Wishlists.Factories
 {
     public interface IWishlistRepositoryFactory
     {
-        IWishlistRepository CreateProductReviewRepository(IUnitOfWork uow);
+        IWishlistRepository CreateWishlistRepository(IUnitOfWork uow);
     }
 }
