@@ -7,6 +7,7 @@ using Vendr.Contrib.Wishlists.Models;
 using Vendr.Core;
 using Vendr.Core.Events;
 using Vendr.Core.Models;
+using Vendr.Core.Services;
 
 namespace Vendr.Contrib.Wishlists.Services.Implement
 {
@@ -14,15 +15,48 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
     {
         private readonly IUnitOfWorkProvider _uowProvider;
         private readonly IWishlistRepositoryFactory _repositoryFactory;
+        private readonly IOrderService _orderService;
+        private readonly IOrderStatusService _orderStatusService;
 
-        public WishlistService(IUnitOfWorkProvider uowProvider, IWishlistRepositoryFactory repositoryFactory)
+        public WishlistService(
+            IUnitOfWorkProvider uowProvider,
+            IWishlistRepositoryFactory repositoryFactory,
+            IOrderService orderService,
+            IOrderStatusService orderStatusService)
         {
             _uowProvider = uowProvider;
             _repositoryFactory = repositoryFactory;
+            _orderService = orderService;
+            _orderStatusService = orderStatusService;
         }
 
-        public void AddProduct(string productReference, decimal qty)
+        public void AddProduct(Guid wishlistId, string productReference, decimal qty)
         {
+            // TODO: Add product to existing wishlist or create a new.
+
+            Guid storeId = Guid.Empty; // reference to store
+            Guid currencyId = Guid.Empty;
+            Guid taxClassId = Guid.Empty;
+            Guid? orderStatusId = _orderStatusService.GetOrderStatus(storeId, "new")?.Id;
+
+            string languageIsoCode = System.Globalization.CultureInfo.CurrentCulture.Name;
+
+            using (var uow = _uowProvider.Create())
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
+            {
+                // Get wishlist
+                var wishlist = repo.GetWishlist(wishlistId);
+
+                // Get reference order or create new
+                var order = _orderService.GetOrder(wishlist.OrderId).AsWritable(uow) ?? Order.Create(uow, storeId, languageIsoCode, currencyId, taxClassId, orderStatusId.Value);
+
+                order.AddProduct(productReference, qty);
+
+                _orderService.SaveOrder(order);
+
+                uow.Complete();
+            }
+
             throw new NotImplementedException();
         }
 

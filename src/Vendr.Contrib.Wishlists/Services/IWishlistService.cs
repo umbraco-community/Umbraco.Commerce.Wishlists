@@ -30,7 +30,7 @@ namespace Vendr.Contrib.Wishlists.Services
         /// <summary>
         /// Add product to wishlist.
         /// </summary>
-        void AddProduct(string productReference, decimal qty);
+        void AddProduct(Guid wishlistId, string productReference, decimal qty);
 
         /// <summary>
         /// Add product to wishlist.

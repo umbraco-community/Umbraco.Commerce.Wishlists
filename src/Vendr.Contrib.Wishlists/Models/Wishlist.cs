@@ -39,6 +39,9 @@ namespace Vendr.Contrib.Wishlists.Models
         [DataMember(Name = "customerReference")]
         public string CustomerReference { get; set; }
 
+        [DataMember(Name = "orderId")]
+        public Guid OrderId { get; set; }
+
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
