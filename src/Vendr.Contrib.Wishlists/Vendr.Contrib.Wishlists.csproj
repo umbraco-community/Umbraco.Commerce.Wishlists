@@ -281,6 +281,7 @@
     <Compile Include="Composing\VendrWishlistComponent.cs" />
     <Compile Include="Composing\VendrWishlistComposer.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Events\WishlistAddedNotification.cs" />
     <Compile Include="Factories\WishlistRepositoryFactory.cs" />
     <Compile Include="Migrations\V_1_0_0\CreateWishlistTable.cs" />
     <Compile Include="Persistence\Dtos\WishlistDto.cs" />

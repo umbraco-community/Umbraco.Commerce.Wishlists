@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Vendr.Contrib.Wishlists.Models;
+using Vendr.Core.Models;
 
 namespace Vendr.Contrib.Wishlists.Services
 {
@@ -29,7 +30,7 @@ namespace Vendr.Contrib.Wishlists.Services
         /// <summary>
         /// Search wishlist.
         /// </summary>
-        IEnumerable<Wishlist> SearchWishlists(Guid storeId, long currentPage, long itemsPerPage, out long totalRecords, string searchTerm = "", DateTime? startDate = null, DateTime? endDate = null);
+        PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = "", DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50);
 
         /// <summary>
         /// Add product to wishlist.

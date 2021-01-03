@@ -99,19 +99,20 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             };
         }
 
-        public Wishlist Save(Wishlist wishlist)
+        public Wishlist SaveWishlist(Wishlist wishlist)
         {
-            throw new NotImplementedException();
+            var dto = EntityFactory.BuildDto(wishlist);
+
+            dto.Id = dto.Id == Guid.Empty ? Guid.NewGuid() : dto.Id;
+
+            _uow.Database.Save(dto);
+
+            return EntityFactory.BuildEntity(dto);
         }
 
-        public Wishlist Insert(Wishlist wishlist)
+        public void DeleteWishlist(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Guid id)
-        {
-            throw new NotImplementedException();
+            _uow.Database.Delete<WishlistDto>(id);
         }
     }
 }

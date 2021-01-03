@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Vendr.Contrib.Wishlists.Events;
 using Vendr.Contrib.Wishlists.Factories;
 using Vendr.Contrib.Wishlists.Models;
 using Vendr.Core;
+using Vendr.Core.Events;
+using Vendr.Core.Models;
 
 namespace Vendr.Contrib.Wishlists.Services.Implement
 {
@@ -24,11 +27,6 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
         }
 
         public void AddProduct(string productReference, decimal qty, IDictionary<string, string> properties)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteWishlist(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -74,12 +72,57 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
 
         public Wishlist SaveWishlist(Wishlist wishlist)
         {
-            throw new NotImplementedException();
+            Wishlist result;
+
+            using (var uow = _uowProvider.Create())
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
+            {
+                if (wishlist.Id == Guid.Empty)
+                {
+                    wishlist.Id = Guid.NewGuid();
+                    wishlist.CreateDate = DateTime.UtcNow;
+
+                    EventBus.Dispatch(new WishlistAddingNotification(wishlist));
+                    uow.ScheduleNotification(new WishlistAddedNotification(wishlist));
+                }
+
+                wishlist.UpdateDate = DateTime.UtcNow;
+
+                result = repo.SaveWishlist(wishlist);
+                uow.Complete();
+            }
+
+            return result;
         }
 
-        public IEnumerable<Wishlist> SearchWishlists(Guid storeId, long currentPage, long itemsPerPage, out long totalRecords, string searchTerm = "", DateTime? startDate = null, DateTime? endDate = null)
+        public void DeleteWishlist(Guid id)
         {
-            throw new NotImplementedException();
+            using (var uow = _uowProvider.Create())
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
+            {
+                repo.DeleteWishlist(id);
+                uow.Complete();
+            }
+        }
+
+        public PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50)
+        {
+            PagedResult<Wishlist> results;
+
+            using (var uow = _uowProvider.Create())
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
+            {
+                results = repo.SearchWishlists(storeId,
+                    searchTerm: searchTerm,
+                    startDate: startDate,
+                    endDate: endDate,
+                    pageNumber: pageNumber,
+                    pageSize: pageSize);
+
+                uow.Complete();
+            }
+
+            return results;
         }
     }
 }

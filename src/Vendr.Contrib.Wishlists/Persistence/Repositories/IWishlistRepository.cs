@@ -20,10 +20,8 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories
 
         PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, string[] customerReferences = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50);
 
-        Wishlist Save(Wishlist wishlist);
+        Wishlist SaveWishlist(Wishlist wishlist);
 
-        Wishlist Insert(Wishlist wishlist);
-
-        void Delete(Guid id);
+        void DeleteWishlist(Guid id);
     }
 }
