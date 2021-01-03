@@ -43,21 +43,6 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             return results;
         }
 
-        public IEnumerable<Wishlist> GetMany(Guid storeId, string productReference, long pageIndex, long pageSize, out long totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Wishlist> GetForCustomer(Guid storeId, string customerReference, long pageIndex, long pageSize, out long totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Wishlist> GetPagedWishlistsByQuery(Guid storeId, IQuery<Wishlist> query, long pageIndex, long pageSize, out long totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
         public PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, string[] customerReferences = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50)
         {
             customerReferences = customerReferences ?? new string[0];

@@ -31,11 +31,6 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Wishlist> GetPagedResults(Guid storeId, long currentPage, long itemsPerPage, out long totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
         public Wishlist GetWishlist(Guid id)
         {
             Wishlist wishlist;
@@ -65,9 +60,22 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             return wishlists;
         }
 
-        public IEnumerable<Wishlist> GetWishlistsForCustomer(Guid storeId, string customerReference, long currentPage, long itemsPerPage, out long totalRecords)
+        public PagedResult<Wishlist> GetWishlistsForCustomer(Guid storeId, string customerReference, long pageNumber = 1, long pageSize = 50)
         {
-            throw new NotImplementedException();
+            PagedResult<Wishlist> results;
+
+            using (var uow = _uowProvider.Create())
+            using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
+            {
+                results = repo.SearchWishlists(storeId,
+                    customerReferences: new[] { customerReference },
+                    pageNumber: pageNumber,
+                    pageSize: pageSize);
+
+                uow.Complete();
+            }
+
+            return results;
         }
 
         public Wishlist SaveWishlist(Wishlist wishlist)

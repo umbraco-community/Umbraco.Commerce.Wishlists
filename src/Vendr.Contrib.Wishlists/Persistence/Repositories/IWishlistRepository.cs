@@ -11,13 +11,7 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories
         Wishlist GetWishlist(Guid id);
 
         IEnumerable<Wishlist> GetWishlists(Guid[] ids);
-
-        IEnumerable<Wishlist> GetMany(Guid storeId, string productReference, long pageIndex, long pageSize, out long totalRecords);
-
-        IEnumerable<Wishlist> GetForCustomer(Guid storeId, string customerReference, long pageIndex, long pageSize, out long totalRecords);
-
-        IEnumerable<Wishlist> GetPagedWishlistsByQuery(Guid storeId, IQuery<Wishlist> query, long pageIndex, long pageSize, out long totalRecords);
-
+        
         PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, string[] customerReferences = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50);
 
         Wishlist SaveWishlist(Wishlist wishlist);

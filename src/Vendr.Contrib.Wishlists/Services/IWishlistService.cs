@@ -20,12 +20,7 @@ namespace Vendr.Contrib.Wishlists.Services
         /// <summary>
         /// Gets wishlists for customer.
         /// </summary>
-        IEnumerable<Wishlist> GetWishlistsForCustomer(Guid storeId, string customerReference, long currentPage, long itemsPerPage, out long totalRecords);
-
-        /// <summary>
-        /// Gets paged result of wishlists.
-        /// </summary>
-        IEnumerable<Wishlist> GetPagedResults(Guid storeId, long currentPage, long itemsPerPage, out long totalRecords);
+        PagedResult<Wishlist> GetWishlistsForCustomer(Guid storeId, string customerReference, long pageNumber = 1, long pageSize = 50);
 
         /// <summary>
         /// Search wishlist.
