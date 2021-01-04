@@ -13,6 +13,8 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories
         IEnumerable<Wishlist> GetWishlists(Guid[] ids);
         
         PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, string[] customerReferences = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50);
+        
+        Wishlist CreateWishlist(string name);
 
         Wishlist SaveWishlist(Wishlist wishlist);
 

@@ -43,6 +43,16 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             return results;
         }
 
+        public Wishlist CreateWishlist(string name)
+        {
+            var wishlist = SaveWishlist(new Wishlist
+            {
+                Name = name
+            });
+
+            return wishlist;
+        }
+
         public PagedResult<Wishlist> SearchWishlists(Guid storeId, string searchTerm = null, string[] customerReferences = null, DateTime? startDate = null, DateTime? endDate = null, long pageNumber = 1, long pageSize = 50)
         {
             customerReferences = customerReferences ?? new string[0];
@@ -89,6 +99,7 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             var dto = EntityFactory.BuildDto(wishlist);
 
             dto.Id = dto.Id == Guid.Empty ? Guid.NewGuid() : dto.Id;
+            dto.Name = wishlist.Name;
 
             _uow.Database.Save(dto);
 

@@ -55,11 +55,14 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
             {
                 // Get wishlist
-                var wishlist = repo.GetWishlist(wishlistId);
+                var wishlist = repo.GetWishlist(wishlistId) ?? repo.CreateWishlist("Wishlist");
 
                 // Get reference order or create new
                 var order = wishlist.OrderId != null ? _orderService.GetOrder(wishlist.OrderId)?.AsWritable(uow) : null 
                     ?? Order.Create(uow, storeId, languageIsoCode, currency.Id, taxClass.Id, orderStatus.Id);
+
+                wishlist.OrderId = order.Id;
+                repo.SaveWishlist(wishlist);
 
                 order.AddProduct(productReference, qty);
 
