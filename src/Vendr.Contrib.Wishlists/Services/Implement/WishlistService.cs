@@ -8,6 +8,7 @@ using Vendr.Core;
 using Vendr.Core.Events;
 using Vendr.Core.Models;
 using Vendr.Core.Services;
+using Vendr.Core.Session;
 
 namespace Vendr.Contrib.Wishlists.Services.Implement
 {
@@ -15,31 +16,40 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
     {
         private readonly IUnitOfWorkProvider _uowProvider;
         private readonly IWishlistRepositoryFactory _repositoryFactory;
+        private readonly ISessionManager _sessionManager;
+        private readonly IStoreService _storeService;
         private readonly IOrderService _orderService;
         private readonly IOrderStatusService _orderStatusService;
+        private readonly ICountryService _countryService;
 
         public WishlistService(
             IUnitOfWorkProvider uowProvider,
             IWishlistRepositoryFactory repositoryFactory,
+            ISessionManager sessionManager,
+            IStoreService storeService,
             IOrderService orderService,
-            IOrderStatusService orderStatusService)
+            IOrderStatusService orderStatusService,
+            ICountryService countryService)
         {
             _uowProvider = uowProvider;
             _repositoryFactory = repositoryFactory;
+            _sessionManager = sessionManager;
+            _storeService = storeService;
             _orderService = orderService;
             _orderStatusService = orderStatusService;
+            _countryService = countryService;
         }
 
-        public void AddProduct(Guid wishlistId, string productReference, decimal qty)
+        public void AddProduct(Guid storeId, Guid wishlistId, string productReference, decimal qty = 1)
         {
-            // TODO: Add product to existing wishlist or create a new.
+            var store = _storeService.GetStore(storeId);
 
-            Guid storeId = Guid.Empty; // reference to store
-            Guid currencyId = Guid.Empty;
-            Guid taxClassId = Guid.Empty;
-            Guid? orderStatusId = _orderStatusService.GetOrderStatus(storeId, "new")?.Id;
+            var orderStatus = _orderStatusService.GetOrderStatus(store.DefaultOrderStatusId.Value);
+            var taxClass = _sessionManager.GetDefaultTaxClass(storeId); 
+            var currency = _sessionManager.GetDefaultCurrency(storeId);
+            var country = _sessionManager.GetDefaultPaymentCountry(storeId);
 
-            string languageIsoCode = System.Globalization.CultureInfo.CurrentCulture.Name;
+            string languageIsoCode = country?.Code;
 
             using (var uow = _uowProvider.Create())
             using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
@@ -48,7 +58,8 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
                 var wishlist = repo.GetWishlist(wishlistId);
 
                 // Get reference order or create new
-                var order = _orderService.GetOrder(wishlist.OrderId).AsWritable(uow) ?? Order.Create(uow, storeId, languageIsoCode, currencyId, taxClassId, orderStatusId.Value);
+                var order = wishlist.OrderId != null ? _orderService.GetOrder(wishlist.OrderId)?.AsWritable(uow) : null 
+                    ?? Order.Create(uow, storeId, languageIsoCode, currency.Id, taxClass.Id, orderStatus.Id);
 
                 order.AddProduct(productReference, qty);
 
@@ -56,8 +67,6 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
 
                 uow.Complete();
             }
-
-            throw new NotImplementedException();
         }
 
         public void AddProduct(string productReference, decimal qty, IDictionary<string, string> properties)
