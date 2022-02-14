@@ -5,7 +5,19 @@
     /// </summary>
     public static partial class Constants
     {
-        // generic constants can go here
+        internal static partial class Internals
+        {
+            public const string PluginControllerName = "VendrWishlists";
+        }
+
+        public static class System
+        {
+            public const string ProductAlias = "vendrWishlists";
+
+            public const string ProductName = "VendrWishlists";
+
+            public const string MigrationPlanName = "Vendr.Contrib.Wishlists";
+        }
 
         public static class DatabaseSchema
         {
@@ -19,22 +31,27 @@
 
         public static class Trees
         {
-            public static class Wishlist
+            public static class Wishlists
             {
                 /// <summary>
-                /// Id for wishlist node
+                /// Alias for wishlists node
+                /// </summary>
+                public const string Alias = "wishlist";
+
+                /// <summary>
+                /// Id for wishlists node
                 /// </summary>
                 public const string Id = "200";
 
                 /// <summary>
-                /// System wishlist icon
+                /// System wishlists icon
                 /// </summary>
-                public const string Icon = "icon-notepad";
+                public const string Icon = "icon-rate";
 
                 /// <summary>
-                /// System wishlist node type
+                /// System wishlists node type
                 /// </summary>
-                public const string NodeType = "Wishlist";
+                public const string NodeType = "Wishlis";
             }
         }
 

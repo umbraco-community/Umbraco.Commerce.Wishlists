@@ -1,5 +1,5 @@
-﻿using Vendr.Contrib.Wishlists.Models;
-using Vendr.Core.Events.Notification;
+﻿using Vendr.Common.Events;
+using Vendr.Contrib.Wishlists.Models;
 
 namespace Vendr.Contrib.Wishlists.Events
 {

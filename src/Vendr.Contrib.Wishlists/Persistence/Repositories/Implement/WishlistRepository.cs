@@ -2,14 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Umbraco.Core.Persistence;
-using Umbraco.Core.Persistence.Querying;
-using Umbraco.Core.Persistence.SqlSyntax;
-using Vendr.Contrib.Wishlists.Factories;
+using Vendr.Common.Models;
 using Vendr.Contrib.Wishlists.Models;
 using Vendr.Contrib.Wishlists.Persistence.Dtos;
-using Vendr.Core;
-using Vendr.Core.Models;
+using Vendr.Contrib.Wishlists.Persistence.Factories;
+using Vendr.Infrastructure;
+
+#if NETFRAMEWORK
+using Umbraco.Core.Persistence;
+using Umbraco.Core.Persistence.SqlSyntax;
+#else
+using Umbraco.Cms.Infrastructure.Persistence;
+using Umbraco.Cms.Infrastructure.Persistence.SqlSyntax;
+using Umbraco.Extensions;
+#endif
 
 namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
 {

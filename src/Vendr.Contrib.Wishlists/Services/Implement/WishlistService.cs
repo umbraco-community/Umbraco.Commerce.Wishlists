@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Vendr.Common;
+using Vendr.Common.Events;
+using Vendr.Common.Models;
 using Vendr.Contrib.Wishlists.Events;
-using Vendr.Contrib.Wishlists.Factories;
 using Vendr.Contrib.Wishlists.Models;
-using Vendr.Core;
-using Vendr.Core.Events;
+using Vendr.Contrib.Wishlists.Persistence;
 using Vendr.Core.Models;
 using Vendr.Core.Services;
 using Vendr.Core.Session;
+using Vendr.Extensions;
 
 namespace Vendr.Contrib.Wishlists.Services.Implement
 {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Umbraco.Core.Persistence.Querying;
+using Vendr.Common.Models;
 using Vendr.Contrib.Wishlists.Models;
-using Vendr.Core.Models;
 
 namespace Vendr.Contrib.Wishlists.Persistence.Repositories
 {

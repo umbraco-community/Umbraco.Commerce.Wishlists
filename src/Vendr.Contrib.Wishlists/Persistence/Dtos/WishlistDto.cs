@@ -1,7 +1,17 @@
 ﻿using NPoco;
 using System;
+using System.Collections.Generic;
+
+#if NETFRAMEWORK
 using Umbraco.Core.Persistence.DatabaseAnnotations;
 using Umbraco.Core.Persistence.DatabaseModelDefinitions;
+using ConstraintAttribute = Umbraco.Core.Persistence.DatabaseAnnotations.ConstraintAttribute;
+#else
+using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
+using Umbraco.Cms.Infrastructure.Persistence.DatabaseModelDefinitions;
+using ConstraintAttribute = Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations.ConstraintAttribute;
+#endif
+
 
 namespace Vendr.Contrib.Wishlists.Persistence.Dtos
 {
