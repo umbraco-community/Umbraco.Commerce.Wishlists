@@ -46,7 +46,7 @@ namespace Vendr.Contrib.Wishlists.Composing
                 var storeId = e.QueryStrings["id"];
                 var id = Constants.Trees.Wishlists.Id;
 
-                var reviewsNode = sender.CreateTreeNode(id, storeId, e.QueryStrings, "Reviews", Constants.Trees.Wishlists.Icon, false, $"{mainRoute}/wishlist-list/{storeId}");
+                var reviewsNode = sender.CreateTreeNode(id, storeId, e.QueryStrings, "Wishlists", Constants.Trees.Wishlists.Icon, false, $"{mainRoute}/wishlist-list/{storeId}");
 
                 reviewsNode.Path = $"-1,{storeId},{id}";
                 reviewsNode.NodeType = Constants.Trees.Wishlists.NodeType;

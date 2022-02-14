@@ -10,7 +10,7 @@ namespace Vendr.Contrib.Wishlists.Persistence.Factories
         {
             dto.MustNotBeNull(nameof(dto));
 
-            var wishlist = new Wishlist(dto.Id)
+            var wishlist = new Wishlist(dto.Id, dto.OrderId)
             {
                 StoreId = dto.StoreId,
                 CreateDate = dto.CreateDate,

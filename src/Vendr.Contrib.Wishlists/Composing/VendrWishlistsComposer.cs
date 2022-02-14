@@ -40,7 +40,7 @@ namespace Vendr.Contrib.Wishlists.Composing
             builder.Register<IWishlistService, WishlistService>(Lifetime.Singleton);
 
             // Register event handlers
-            builder.AddVendrReviewsEventHandlers();
+            builder.AddVendrWishlistsEventHandlers();
 
             // Register component
             builder.Components()

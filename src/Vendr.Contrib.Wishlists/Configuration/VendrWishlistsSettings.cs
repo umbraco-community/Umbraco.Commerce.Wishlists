@@ -2,6 +2,6 @@
 {
     public class VendrWishlistsSettings
     {
-
+        public string WishtListName { get; } = "Wishlist";
     }
 }

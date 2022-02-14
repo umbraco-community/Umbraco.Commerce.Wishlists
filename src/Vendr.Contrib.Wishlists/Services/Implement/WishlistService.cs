@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Vendr.Common;
 using Vendr.Common.Events;
 using Vendr.Common.Models;
+using Vendr.Contrib.Wishlists.Configuration;
 using Vendr.Contrib.Wishlists.Events;
 using Vendr.Contrib.Wishlists.Models;
 using Vendr.Contrib.Wishlists.Persistence;
@@ -22,6 +23,7 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
         private readonly IOrderService _orderService;
         private readonly IOrderStatusService _orderStatusService;
         private readonly ICountryService _countryService;
+        private readonly VendrWishlistsSettings _settings;
 
         public WishlistService(
             IUnitOfWorkProvider uowProvider,
@@ -30,7 +32,8 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             IStoreService storeService,
             IOrderService orderService,
             IOrderStatusService orderStatusService,
-            ICountryService countryService)
+            ICountryService countryService,
+            VendrWishlistsSettings settings)
         {
             _uowProvider = uowProvider;
             _repositoryFactory = repositoryFactory;
@@ -39,6 +42,7 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             _orderService = orderService;
             _orderStatusService = orderStatusService;
             _countryService = countryService;
+            _settings = settings;
         }
 
         public void AddProduct(Guid storeId, Guid wishlistId, string productReference, decimal qty = 1)
@@ -55,8 +59,10 @@ namespace Vendr.Contrib.Wishlists.Services.Implement
             using (var uow = _uowProvider.Create())
             using (var repo = _repositoryFactory.CreateWishlistRepository(uow))
             {
+                // TODO: How to create new wishlist - create wishlist or order first?
+
                 // Get wishlist
-                var wishlist = repo.GetWishlist(wishlistId) ?? repo.CreateWishlist("Wishlist");
+                var wishlist = repo.GetWishlist(wishlistId) ?? repo.CreateWishlist(storeId, Guid.NewGuid(), _settings.WishtListName);
 
                 // Get reference order or create new
                 var order = wishlist.OrderId != null ? _orderService.GetOrder(wishlist.OrderId)?.AsWritable(uow) : null 

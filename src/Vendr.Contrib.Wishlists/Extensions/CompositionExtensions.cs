@@ -14,7 +14,7 @@ namespace Vendr.Contrib.Wishlists.Extensions
 {
     internal static class CompositionExtensions
     {
-        public static IBuilder AddVendrReviewsEventHandlers(this IBuilder builder)
+        public static IBuilder AddVendrWishlistsEventHandlers(this IBuilder builder)
         {
             //builder.WithNotificationEvent<WishlistAddedNotification>()
             //    .RegisterHandler<LogWishlistAddedActivity>();

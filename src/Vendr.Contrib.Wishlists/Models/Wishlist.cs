@@ -22,6 +22,10 @@ namespace Vendr.Contrib.Wishlists.Models
 
         public DateTime UpdateDate { get; set; }
 
+        public Wishlist(Guid storeId, Guid orderId)
+            : this(Guid.Empty, storeId, orderId, null)
+        { }
+
         public Wishlist(Guid storeId, Guid orderId, string customerReference)
             : this(Guid.Empty, storeId, orderId, customerReference)
         { }

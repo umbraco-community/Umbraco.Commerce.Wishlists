@@ -49,9 +49,9 @@ namespace Vendr.Contrib.Wishlists.Persistence.Repositories.Implement
             return results;
         }
 
-        public Wishlist CreateWishlist(string name)
+        public Wishlist CreateWishlist(Guid storeId, Guid? orderId = null, string name = null)
         {
-            var wishlist = SaveWishlist(new Wishlist
+            var wishlist = SaveWishlist(new Wishlist(storeId, orderId ?? Guid.NewGuid())
             {
                 Name = name
             });

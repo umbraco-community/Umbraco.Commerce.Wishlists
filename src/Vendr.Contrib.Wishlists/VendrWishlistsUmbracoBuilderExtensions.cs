@@ -38,8 +38,8 @@ namespace Vendr.Contrib.Wishlists
             options.ValidateDataAnnotations();
 
             // Register services
-            builder.Services.AddTransient<IWishlistRepositoryFactory, WishlistwRepositoryFactory>();
-            builder.Services.AddSingleton<IWishlistservice, WishlistService>();
+            builder.Services.AddTransient<IWishlistRepositoryFactory, WishlistRepositoryFactory>();
+            builder.Services.AddSingleton<IWishlistService, WishlistService>();
             builder.Services.AddSingleton<VendrWishlistsApi>();
 
             // Register event handlers

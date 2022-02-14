@@ -30,6 +30,9 @@ namespace Vendr.Contrib.Wishlists.Persistence.Dtos
         [Column("storeId")]
         public Guid StoreId { get; set; }
 
+        [Column("orderId")]
+        public Guid OrderId { get; set; }
+
         [Column("createDate")]
         [Constraint(Default = SystemMethods.CurrentDateTime)]
         public DateTime CreateDate { get; set; }
