@@ -1,5 +1,5 @@
-# Vendr Wishlists :memo:
-Wishlists for Vendr, the eCommerce solution for Umbraco v8+
+# Umbraco Commerce Wishlists :memo:
+Wishlists for Umbraco Commerce
 
 ## Ideas:
 
