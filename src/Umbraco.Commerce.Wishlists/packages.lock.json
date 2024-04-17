@@ -5,7 +5,7 @@
       "Umbraco.Cms": {
         "type": "Direct",
         "requested": "(, )",
-        "resolved": "9.0.0",
+        "resolved": "10.0.0",
         "contentHash": "AFaBglyXmGIsPRdk4hZIo9ImMtrD3sAJqm1qGofECTCS0NHPIqrdhOmpxnH+MRhQRVkhRl2fWDze+IYyEjqGJw==",
         "dependencies": {
           "Umbraco.Cms.StaticAssets": "[9.0.0]",

@@ -1,10 +1,8 @@
-﻿using IBuilder = Umbraco.Cms.Core.DependencyInjection.IUmbracoBuilder;
-
 namespace Umbraco.Commerce.Wishlists.Extensions
 {
     internal static class CompositionExtensions
     {
-        public static IBuilder AddVendrWishlistsEventHandlers(this IBuilder builder)
+        public static IUmbracoBuilder AddVendrWishlistsEventHandlers(this IUmbracoBuilder builder)
         {
             //builder.WithNotificationEvent<WishlistAddedNotification>()
             //    .RegisterHandler<LogWishlistAddedActivity>();
