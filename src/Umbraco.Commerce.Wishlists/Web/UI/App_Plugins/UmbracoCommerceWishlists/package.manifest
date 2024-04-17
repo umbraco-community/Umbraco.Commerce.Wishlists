@@ -1,0 +1,11 @@
+﻿{
+  "javascript": [
+    "~/App_Plugins/UmbracoCommerceWishlists/backoffice/resources/wishlists.resource.js",
+    "~/App_Plugins/UmbracoCommerceWishlists/backoffice/interceptors/routeRewrite.interceptor.js",
+    "~/App_Plugins/UmbracoCommerceWishlists/backoffice/interceptors/config.interceptors.js",
+    "~/App_Plugins/UmbracoCommerceWishlists/backoffice/controllers/wishlist-list.controller.js"
+  ],
+  "css": [
+    "~/App_Plugins/UmbracoCommerceWishlists/backoffice/css/wishlists.css"
+  ]
+}

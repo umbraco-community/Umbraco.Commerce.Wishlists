@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Title>Umbraco Commerce Wishlists</Title>
+		<TargetFramework>net6.0</TargetFramework>
+		<Description>A drop in wishlist solution for Umbraco Commerce.</Description>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageReadmeFile>README-nuget.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/umbraco-community/Umbraco.Commerce.Wishlists</RepositoryUrl>
+		<PackageTags>umbraco commerce wishlists umbraco-marketplace</PackageTags>
+		<Copyright>Copyright © Umbraco Community $([System.DateTime]::Today.ToString('yyyy'))</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Umbraco.Cms" />
+		<PackageReference Include="Umbraco.Commerce" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="README-nuget.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+    
+</Project>
