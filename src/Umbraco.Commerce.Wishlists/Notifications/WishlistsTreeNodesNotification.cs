@@ -1,4 +1,3 @@
-﻿#if NET
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -12,8 +11,9 @@ using Umbraco.Cms.Core.Trees;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.BackOffice.Trees;
 using Vendr.Umbraco.Web.Trees;
+using Umbraco.Cms.Core.Security;
 
-namespace Vendr.Contrib.Wishlists.Notifications
+namespace Umbraco.Commerce.Wishlists.Notifications
 {
     public class WishlistsTreeNodesNotification : INotificationHandler<TreeNodesRenderingNotification>
     {
@@ -68,8 +68,8 @@ namespace Vendr.Contrib.Wishlists.Notifications
                 wishlistsNode.NodeType = Constants.Trees.Wishlists.NodeType;
 
                 wishlistsNode.AdditionalData.Add("storeId", storeId);
-                wishlistsNode.AdditionalData.Add("tree", Vendr.Umbraco.Constants.Trees.Stores.Alias);
-                wishlistsNode.AdditionalData.Add("application", Vendr.Umbraco.Constants.Sections.Commerce);
+                wishlistsNode.AdditionalData.Add("tree", Umbraco.Commerce.Constants.Trees.Stores.Alias);
+                wishlistsNode.AdditionalData.Add("application", Umbraco.Commerce.Constants.Sections.Commerce);
 
                 var optNodeIndex = notification.Nodes.FindIndex(x => x.NodeType == "Options");
                 var index = optNodeIndex >= 0 ? optNodeIndex : notification.Nodes.Count;
@@ -79,5 +79,3 @@ namespace Vendr.Contrib.Wishlists.Notifications
         }
     }
 }
-
-#endif

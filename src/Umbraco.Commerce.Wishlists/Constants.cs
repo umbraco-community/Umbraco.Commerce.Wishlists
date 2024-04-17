@@ -1,4 +1,4 @@
-﻿namespace Umbraco.Commerce.Wishlists
+namespace Umbraco.Commerce.Wishlists
 {
     /// <summary>
     /// Constants all the identifiers
@@ -7,21 +7,21 @@
     {
         internal static partial class Internals
         {
-            public const string PluginControllerName = "VendrWishlists";
+            public const string PluginControllerName = "UmbracoCommerceWishlists";
         }
 
         public static class System
         {
-            public const string ProductAlias = "vendrWishlists";
+            public const string ProductAlias = "umbracoCommerceWishlists";
 
-            public const string ProductName = "VendrWishlists";
+            public const string ProductName = "UmbracoCommerceWishlists";
 
-            public const string MigrationPlanName = "Vendr.Contrib.Wishlists";
+            public const string MigrationPlanName = "Umbraco.Commerce.Wishlists";
         }
 
         public static class DatabaseSchema
         {
-            public const string TableNamePrefix = "vendr";
+            public const string TableNamePrefix = "umbracoCommerce";
 
             public static class Tables
             {

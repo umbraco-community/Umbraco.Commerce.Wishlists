@@ -16,12 +16,5 @@
 		<PackageReference Include="Umbraco.Cms" />
 		<PackageReference Include="Umbraco.Commerce" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="README-nuget.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
     
 </Project>
