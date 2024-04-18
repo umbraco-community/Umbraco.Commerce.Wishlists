@@ -12,7 +12,7 @@ namespace Umbraco.Commerce.Wishlists
 {
     public static class UmbracoCommerceWishlistsUmbracoBuilderExtensions
     {
-        public static IUmbracoBuilder AddVendrWishlists(this IUmbracoBuilder builder, Action<UmbracoCommerceWishlistsSettings>? defaultOptions = default)
+        public static IUmbracoBuilder AddUmbracoCommerceeWishlists(this IUmbracoBuilder builder, Action<UmbracoCommerceWishlistsSettings>? defaultOptions = default)
         {
             // Register configuration
             var options = builder.Services.AddOptions<UmbracoCommerceWishlistsSettings>()
